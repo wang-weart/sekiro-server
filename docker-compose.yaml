@@ -14,6 +14,11 @@ services:
         #entrypoint: ["nginx"]
         links:
             - sekiro:sekiro
+        logging:
+            driver: json-file  # 使用默认的 JSON 日志驱动
+            options:
+                max-size: "100m"  # 单个日志文件最大 100MB
+                max-file: "3"     # 最多保留 3 个历史日志文件
     sekiro:
         container_name: sekiro
         image: lbbniu/sekiro
@@ -23,3 +28,8 @@ services:
             - "5602"
         ports:
             - "5600:5600"
+        logging:
+            driver: json-file  # 使用默认的 JSON 日志驱动
+            options:
+                max-size: "100m"  # 单个日志文件最大 100MB
+                max-file: "3"     # 最多保留 3 个历史日志文件
